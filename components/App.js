@@ -3,16 +3,17 @@ import React from 'react';
 import TodoInput from './TodoInput';
 import TodoList from './TodoList';
 import { connect }  from 'react-redux';
+import { bindActionCreators }  from 'redux';
+import actions from '../redux/actions';
 
 class App extends React.Component {
 	render() {
 		return (
 			<div>
 				<h1> Todo List</h1>
-				<TodoInput
-					dispatch={this.props.dispatch}/>
+				<TodoInput addTodo={this.props.actions.addTodo}/>
 				<TodoList
-					dispatch={this.props.dispatch}
+					actions={this.props.actions}
 					todos={this.props.todos}/>
 			</div>
 			
@@ -24,7 +25,21 @@ function mapStateToProps(state) {
 	return state;
 }
 
-export default connect(mapStateToProps)(App);
+//wraps all of the actions with the dispatcher and return them
+/*
+	This allows us to:
+	1. Avoid passing the dispatcher to everu single component
+	2. Pass only the the actions needed down to the child component
+	3. From the child component, there's no need to call the dispatcher, just call
+		the action passed from here as props
+*/
+function mapDispatchToProps(dispatch) {
+	return {
+		actions: bindActionCreators(actions, dispatch)
+	}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
 
 
 

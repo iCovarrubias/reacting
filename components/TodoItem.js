@@ -5,12 +5,12 @@ class TodoItem extends React.Component {
 
 	handleComplete() {
 		console.log('complete click')
-		this.props.dispatch(actions.completeTodo(this.props.todo.id));
+		this.props.actions.completeTodo(this.props.todo.id);
 	}
 
 	handleDelete(){
 		console.log('delete click')
-		this.props.dispatch(actions.deleteTodo(this.props.todo.id));
+		this.props.actions.deleteTodo(this.props.todo.id);
 	}
 
 	render() {

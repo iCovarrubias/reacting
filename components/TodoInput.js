@@ -1,5 +1,7 @@
 import React from 'react';
-import actions from '../redux/actions';
+//we are now getting this from the parent component as props
+// thanks to the mapDispatchToProps
+//  import actions from '../redux/actions'; 
 
 class TodoInput extends React.Component {
 	constructor(props) {
@@ -15,7 +17,9 @@ class TodoInput extends React.Component {
 
 	handleSubmit(event) {
 		event.preventDefault();
-		this.props.dispatch(actions.addTodo(this.state.inputText));
+		// this.props.dispatch(actions.addTodo(this.state.inputText));
+		//no need to call the dispatcher anymore
+		this.props.addTodo(this.state.inputText);
 	}
 
 	render(){

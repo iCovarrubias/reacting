@@ -11,7 +11,8 @@ class App extends React.Component {
 				<h1> Todo List</h1>
 				<TodoInput
 					dispatch={this.props.dispatch}/>
-				<TodoList 
+				<TodoList
+					dispatch={this.props.dispatch}
 					todos={this.props.todos}/>
 			</div>
 			

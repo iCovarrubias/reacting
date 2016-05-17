@@ -10,7 +10,7 @@ function getId(todos) {
 			return [{
 					text: action.text, //add new todo info
 					completed: false,
-					id: getId(state)
+					id: getId(todos)
 				}, ...todos];
 
 		case "COMPLETE_TODO":
